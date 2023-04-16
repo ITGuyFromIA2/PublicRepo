@@ -1,0 +1,82 @@
+@echo off
+setlocal EnableDelayedExpansion
+set LF=^
+ 
+ 
+REM !!! Do not remove the two lines above this; required to make a newline variable !!!
+ 
+REM To generate the following, use certutil -decode or ConvertTo-MultilineBatchBase64 in PowerShell.Common.psm1
+REM At this time, it isn't possible to decode with certutil using Base64 encoded by [System.Convert]::ToBase64String
+REM certutil appears to keep lines to ~64 characters; recommended maximium line length is 127
+ 
+REM Set the Base64 of the target script
+set TargetScript1=I0hhbmRsaW5nIHZhcmlvdXMgQXBwWCBhbmQgQXBwWFByb3Zpc2lvbmVkIGl0ZW1z!LF!
+set TargetScript1=!TargetScript1!IGhlcmUNCiAgICAkTGlzdF9BcHBYVG9SZW1vdmUgPSBAKCIqRGVsbERpZ2l0YWwq!LF!
+set TargetScript1=!TargetScript1!IiwiKkRlbGxPcHRpbWl6ZXIqIik7DQoNCiAgICAjR2V0IGxpc3Qgb2YgYWxsIHBy!LF!
+set TargetScript1=!TargetScript1!b3Zpc2lvbmVkIGFwcHMNCiAgICAgICAgJEFsbEFwcFhfUHJvdmlzaW9uZWQgPSBH!LF!
+set TargetScript1=!TargetScript1!ZXQtQXBweFByb3Zpc2lvbmVkUGFja2FnZSAtT25saW5lOw0KICAgICAgICAkTWF0!LF!
+set TargetScript1=!TargetScript1!Y2hlZF9Qcm92aXNpb25lZCA9IEAoKTsNCiNMb29wIHRocm91Z2ggYWxsIHByb3Zp!LF!
+set TargetScript1=!TargetScript1!c2lvbmVkLCBtYXRjaGluZyB0aGUgJ0xpc3RfQXBwWFRvUmVtb3ZlJw0KICAgIGZv!LF!
+set TargetScript1=!TargetScript1!cmVhY2ggKCRQcm92aXNpb25lZCBpbiAkQWxsQXBwWF9Qcm92aXNpb25lZCkgew0K!LF!
+set TargetScript1=!TargetScript1!ICAgICAgICBpZiAoKCRMaXN0X0FwcFhUb1JlbW92ZSB8ICV7JFByb3Zpc2lvbmVk!LF!
+set TargetScript1=!TargetScript1!LlBhY2thZ2VOYW1lIC1saWtlICRffSkgLWNvbnRhaW5zICR0cnVlKSB7DQogICAg!LF!
+set TargetScript1=!TargetScript1!ICAgICAgICAkTWF0Y2hlZF9Qcm92aXNpb25lZCArPSAkUHJvdmlzaW9uZWQ7DQog!LF!
+set TargetScript1=!TargetScript1!ICAgICAgICAgICBSZW1vdmUtQXBweFByb3Zpc2lvbmVkUGFja2FnZSAtT25saW5l!LF!
+set TargetScript1=!TargetScript1!IC1QYWNrYWdlTmFtZSAkUHJvdmlzaW9uZWQuUGFja2FnZU5hbWUgLUFsbFVzZXJz!LF!
+set TargetScript1=!TargetScript1!IC1FcnJvckFjdGlvbiBTaWxlbnRseUNvbnRpbnVlOw0KICAgICAgICB9DQogICAg!LF!
+set TargetScript1=!TargetScript1!fQ0KDQokYXBwWF9SZW1vdmUgPSBAKCkNCiRNYXRjaGVkX0luc3RhbGxlZCA9IEAo!LF!
+set TargetScript1=!TargetScript1!KQ0KDQokQWxsQXBwWF9JbnN0YWxsZWQgPSBHZXQtQXBweFBhY2thZ2UgLUFsbFVz!LF!
+set TargetScript1=!TargetScript1!ZXJzDQoNCmZvcmVhY2ggKCRJbnN0YWxsZWQgaW4gJEFsbEFwcFhfSW5zdGFsbGVk!LF!
+set TargetScript1=!TargetScript1!KSB7DQogICAgaWYgKCgkTGlzdF9BcHBYVG9SZW1vdmUgfCAleyRpbnN0YWxsZWQu!LF!
+set TargetScript1=!TargetScript1!UGFja2FnZUZ1bGxOYW1lIC1saWtlICRffSkgLWNvbnRhaW5zICR0cnVlKSB7DQog!LF!
+set TargetScript1=!TargetScript1!ICAgICAgICRNYXRjaGVkX0luc3RhbGxlZCArPSAkSW5zdGFsbGVkOw0KICAgICAg!LF!
+set TargetScript1=!TargetScript1!ICBSZW1vdmUtQXBweFBhY2thZ2UgLVBhY2thZ2UgJEluc3RhbGxlZCAtQWxsVXNl!LF!
+set TargetScript1=!TargetScript1!cnMgLUVycm9yQWN0aW9uIFNpbGVudGx5Q29udGludWU7DQogICAgfQ0KfQ0KDQoN!LF!
+set TargetScript1=!TargetScript1!CiRUaW1lc3RhbXAgPSBHZXQtRGF0ZSAtRm9ybWF0ICJ5eXl5LU1NLWRkX1RISG1t!LF!
+set TargetScript1=!TargetScript1!c3MiOw0KJExvZ0ZpbGUgPSAiJGVudlRFTVBcRGVsbFVuaW5zdF8kVGltZXN0YW1w!LF!
+set TargetScript1=!TargetScript1!LmxvZyI7DQokUHJvZ3JhbUxpc3QgPSBAKCAiSEtMTVxTb2Z0d2FyZVxXb3c2NDMy!LF!
+set TargetScript1=!TargetScript1!Tm9kZVxNaWNyb3NvZnRcV2luZG93c1xDdXJyZW50VmVyc2lvblxVbmluc3RhbGxc!LF!
+set TargetScript1=!TargetScript1!KiIsICJIS0xNXFNvZnR3YXJlXE1pY3Jvc29mdFxXaW5kb3dzXEN1cnJlbnRWZXJz!LF!
+set TargetScript1=!TargetScript1!aW9uXFVuaW5zdGFsbFwqIiApOw0KJFByb2dyYW1zID0gR2V0LUl0ZW1Qcm9wZXJ0!LF!
+set TargetScript1=!TargetScript1!eSAkUHJvZ3JhbUxpc3QgLUVBIDA7DQoNCiNMaXN0IG9mIGFwcGxpY2F0aW9ucyB0!LF!
+set TargetScript1=!TargetScript1!byByZW1vdmUsIGFzIHNlZW4gaW4gQWRkL1JlbW92ZSBQcm9ncmFtcyAodXNlIHdp!LF!
+set TargetScript1=!TargetScript1!bGRjYXJkcykNCiAgICAjJFVuaW5zdGFsbEFwcExpc3QgPSBAKCJEZWxsIE9wdGlt!LF!
+set TargetScript1=!TargetScript1!aXplcioiLCIqRGVsbCBEaWdpdGFsIERlbGl2ZXJ5KiIpDQogICAgJFVuaW5zdGFs!LF!
+set TargetScript1=!TargetScript1!bEFwcExpc3QgPSBAKCJEZWxsKk9wdGltaXplcioiLCIqRGVsbCBEaWdpdGFsIERl!LF!
+set TargetScript1=!TargetScript1!bGl2ZXJ5KiIsIipFeHByZXNzKkNvbm5lY3QqIik7DQoNCiNMaXN0IG9mIHBvc3Np!LF!
+set TargetScript1=!TargetScript1!YmxlIHJ1bm5pbmcgcHJvY2Vjc3NlcyBhc3NvY2lhdGVkIHdpdGggdGhlIGFib3Zl!LF!
+set TargetScript1=!TargetScript1!DQogICAgJFJ1bm5pbmdQcm9jZXNzTGlzdCA9IEAoIkRlbGxPcHRpbWl6ZXIuZXhl!LF!
+set TargetScript1=!TargetScript1!IiwiRGVsbC5EMy5VV1AuZXhlIik7DQoNCiRBcHAgPSBAKCk7ICAgICAgICAjV2ls!LF!
+set TargetScript1=!TargetScript1!bCBoYXZlICdNU0knIGFwcHMgaW4gaXQNCiAkQXBwX1dob2xlID0gQCgpOw0KJE1h!LF!
+set TargetScript1=!TargetScript1!bnVhbEFwcCA9IEAoKTsgICNXaWxsIGhhdmUgJ290aGVyJyB0eXBlcyBpbiBpdCAo!LF!
+set TargetScript1=!TargetScript1!SW5zdGFsbHNoaWVsZCkNCg0KIyRQcm9ncmFtID0gKCRQcm9ncmFtcyB8IHdoZXJl!LF!
+set TargetScript1=!TargetScript1!LU9iamVjdCAtUHJvcGVydHkgRGlzcGxheW5hbWUgLUxpa2UgIipEZWxsKiIpWzBd!LF!
+set TargetScript1=!TargetScript1!DQpmb3JlYWNoICgkUHJvZ3JhbSBpbiAkUHJvZ3JhbXMpIHsNCiAgICBpZiAoKCgk!LF!
+set TargetScript1=!TargetScript1!VW5pbnN0YWxsQXBwTGlzdCB8ICV7KCRQcm9ncmFtLkRpc3BsYXlOYW1lIC1saWtl!LF!
+set TargetScript1=!TargetScript1!ICRfKX0pIC1jb250YWlucyAkdHJ1ZSkpIHsNCiAgICAgICAgaWYgKCgkUHJvZ3Jh!LF!
+set TargetScript1=!TargetScript1!bS5Vbmluc3RhbGxTdHJpbmcgLWxpa2UgIiptc2lleGVjKiIpKSB7DQogICAgICAg!LF!
+set TargetScript1=!TargetScript1!ICRBcHBfV2hvbGUgKz0gJFByb2dyYW07DQogICAgICAgICAgICAkQXBwICs9ICRQ!LF!
+set TargetScript1=!TargetScript1!cm9ncmFtLlBTQ2hpbGROYW1lOw0KICAgICAgICB9IGVsc2Ugew0KICAgICAgICAg!LF!
+set TargetScript1=!TargetScript1!ICAgJE1hbnVhbEFwcCArPSAkUHJvZ3JhbTsNCiAgICAgICAgfQ0KICAgIH0NCn0N!LF!
+set TargetScript1=!TargetScript1!Cg0KR2V0LVByb2Nlc3MgfCBXaGVyZS1PYmplY3QgeyAkXy5Qcm9jZXNzTmFtZSAt!LF!
+set TargetScript1=!TargetScript1!aW4gJFJ1bm5pbmdQcm9jZXNzTGlzdCB9IHwgU3RvcC1Qcm9jZXNzIC1Gb3JjZTsN!LF!
+set TargetScript1=!TargetScript1!Cg0KY21kIC9jICAiJCgoJE1hbnVhbEFwcCkudW5pbnN0YWxsU3RyaW5nKSAvc2ls!LF!
+set TargetScript1=!TargetScript1!ZW50IjsNCg0KZm9yZWFjaCAoJGEgaW4gJEFwcCkgew0KJFBhcmFtcyA9IEAoIi9x!LF!
+set TargetScript1=!TargetScript1!biIsIi9ub3Jlc3RhcnQiLCIvWCIsIiRhIiwiL0wqViAiIiRMb2dGaWxlIiIiKSA7!LF!
+set TargetScript1=!TargetScript1!DQpTdGFydC1Qcm9jZXNzICJtc2lleGVjLmV4ZSIgLUFyZ3VtZW50TGlzdCAkUGFy!LF!
+set TargetScript1=!TargetScript1!YW1zIC1XYWl0IC1Ob05ld1dpbmRvdzsNCn0NCg0KDQo=!LF!
+ 
+REM Set the temporary file paths
+set "TempBase64Output=%temp%\TargetScript.%random%.txt"
+set "TempTargetScript=%temp%\TargetScript.%random%.ps1"
+ 
+REM Decode the TargetScript variable
+echo !TargetScript1! > %TempBase64Output%
+certutil -decode %TempBase64Output% %TempTargetScript% > NUL
+ 
+REM Execute TargetScript
+%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File "%TempTargetScript%"
+ pause
+REM Clean up temporary files
+del %TempBase64Output%
+del %TempTargetScript%
